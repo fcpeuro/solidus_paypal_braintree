@@ -224,7 +224,7 @@ describe SolidusPaypalBraintree::TransactionAddress do
         let(:address_params) { super().merge({ first_name: "Bruce", last_name: "Wayne" }) }
 
         it 'displays a deprecation warning' do
-          expect(Spree::Deprecation).to receive(:warn).
+          expect(ActiveSupport::Deprecation).to receive(:warn).
             with("first_name and last_name are deprecated. Use name instead.", any_args)
 
           subject

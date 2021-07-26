@@ -1,6 +1,6 @@
 <% if defined?(id) && !defined?(payment_method) %>
   <% payment_method = Spree::PaymentMethod.find(id) %>
-  <% Spree::Deprecation.warn(
+  <% ActiveSupport::Deprecation.warn(
     "passing id to _braintree_hosted_fields.html.erb is deprecated. Please pass the payment_method directly.",
     caller
   ) %>
