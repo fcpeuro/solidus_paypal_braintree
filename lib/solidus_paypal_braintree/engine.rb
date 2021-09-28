@@ -4,7 +4,7 @@ require 'solidus_support'
 
 module SolidusPaypalBraintree
   class Engine < Rails::Engine
-    include SolidusSupport::EngineExtensions
+    include SolidusPaypalBraintree::EngineExtensions
 
     isolate_namespace SolidusPaypalBraintree
     engine_name 'solidus_paypal_braintree'
