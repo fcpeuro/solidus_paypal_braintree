@@ -80,7 +80,7 @@ module SolidusPaypalBraintree
       return if state_before_current?(end_state)
 
       until order.state == end_state
-        order.next!
+        break unless order.next
         update_payment_total(payment) if order.payment?
       end
     end
