@@ -23,9 +23,15 @@ module SolidusPaypalBraintree
       respond_to do |format|
         if import.valid?
           import.import!(import_state, restart_checkout: restart_checkout)
+          @order = import.order
 
-          format.html { redirect_to redirect_url(import) }
-          format.json { render json: { redirectUrl: redirect_url(import) } }
+          if @order.errors.any?
+            status = 422
+            format.json { render json: { errors: @order.errors, status: status }, status: status }
+          else
+            format.html { redirect_to redirect_url(import) }
+            format.json { render json: { redirectUrl: redirect_url(import) } }
+          end
         else
           status = 422
           format.html { import_error(import) }
