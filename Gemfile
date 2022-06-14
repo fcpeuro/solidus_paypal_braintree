@@ -20,6 +20,8 @@ gem 'sassc-rails', platforms: :mri
 
 gem 'bourbon'
 
+gem 'solidus_dev_support'
+
 case ENV['DB']
 when 'mysql'
   gem 'mysql2'
