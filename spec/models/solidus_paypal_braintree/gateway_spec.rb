@@ -545,10 +545,10 @@ RSpec.describe SolidusPaypalBraintree::Gateway do
     end
 
     shared_examples "sources_by_order" do
-      let(:order) { FactoryBot.create :order, user: user, state: "complete", completed_at: Time.current }
+      let(:order) { create :order, user: user, state: "complete", completed_at: Time.current }
       let(:gateway) { new_gateway.tap(&:save!) }
 
-      let(:other_payment_method) { FactoryBot.create(:payment_method) }
+      let(:other_payment_method) { create(:payment_method) }
 
       let(:source_without_profile) do
         SolidusPaypalBraintree::Source.create!(
@@ -595,7 +595,7 @@ RSpec.describe SolidusPaypalBraintree::Gateway do
 
       context "when the order has no payments with the braintree payment method" do
         let(:payment_method_id) { other_payment_method.id }
-        let(:source) { FactoryBot.create :credit_card }
+        let(:source) { create :credit_card }
 
         it "returns no results" do
           expect(subject.to_a).to eql([])
@@ -607,7 +607,7 @@ RSpec.describe SolidusPaypalBraintree::Gateway do
       subject { gateway.sources_by_order(order) }
 
       let(:gateway) { new_gateway.tap(&:save!) }
-      let(:order) { FactoryBot.create :order, user: user, state: "complete", completed_at: Time.current }
+      let(:order) { create :order, user: user, state: "complete", completed_at: Time.current }
 
       include_examples "sources_by_order"
     end
@@ -615,7 +615,7 @@ RSpec.describe SolidusPaypalBraintree::Gateway do
     describe "#reusable_sources" do
       subject { gateway.reusable_sources(order) }
 
-      let(:order) { FactoryBot.build :order, user: user }
+      let(:order) { build :order, user: user }
       let(:gateway) { new_gateway.tap(&:save!) }
 
       context "when an order is completed" do
@@ -624,7 +624,7 @@ RSpec.describe SolidusPaypalBraintree::Gateway do
 
       context "when an order is not completed" do
         context "when the order has a user id" do
-          let(:user) { FactoryBot.create(:user) }
+          let(:user) { create(:user) }
 
           let!(:source_without_profile) do
             SolidusPaypalBraintree::Source.create!(

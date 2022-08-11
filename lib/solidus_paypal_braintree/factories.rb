@@ -1,14 +1,15 @@
 # frozen_string_literal: true
 
-FactoryBot.define do
+FactoryGirl.define do
   # Define your Spree extensions Factories within this file to enable applications,
   # and other extensions to use and override them.
   #
   # Example adding this to your spec_helper will load these Factories for use:
   # require 'solidus_paypal_braintree/factories'
+  
 end
 
-FactoryBot.modify do
+FactoryGirl.modify do
   # The Solidus address factory randomizes the zipcode.
   # The OrderWalkThrough we use in the credit card checkout spec uses this factory for the user addresses.
   # For credit card payments we transmit the billing address to braintree, for paypal payments the shipping address.

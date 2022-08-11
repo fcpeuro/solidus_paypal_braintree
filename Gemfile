@@ -4,7 +4,7 @@ source 'https://rubygems.org'
 git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
 branch = ENV.fetch('SOLIDUS_BRANCH', 'master')
-gem 'solidus', github: 'solidusio/solidus', branch: branch
+gem 'solidus', github: 'solidusio/solidus', branch: "v2.3"
 
 # Needed to help Bundler figure out how to resolve dependencies,
 # otherwise it takes forever to resolve them.
@@ -16,9 +16,13 @@ gem 'solidus_auth_devise'
 
 # Asset compilation speed
 gem 'mini_racer'
-gem 'sassc-rails', platforms: :mri
+gem 'sass-rails', '~> 5.0.7'
+gem 'coffee-rails', '~> 4.2'
 
-gem 'bourbon'
+gem 'bourbon', '<5'
+gem 'deface'
+
+gem 'factory_girl'
 
 case ENV['DB']
 when 'mysql'
