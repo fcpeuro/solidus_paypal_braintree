@@ -16,7 +16,8 @@ RSpec.describe SolidusPaypalBraintree::Gateway do
       nonce: 'fake-valid-nonce',
       user: user,
       payment_type: payment_type,
-      payment_method: gateway
+      payment_method: gateway,
+      device_data: 'fake-device-data'
     )
   end
 
